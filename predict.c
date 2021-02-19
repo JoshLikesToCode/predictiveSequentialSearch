@@ -97,73 +97,73 @@ void find_item(int* arr, int size, int key)
 							return;
 						}
 					}
-               	}
-                else if(last_value < key)
-                {
-                	i = last_index+1;
-                    
-                	if(i > size)
+               		}
+                	else if(last_value < key)
                 	{
-              			i -= 1;
-                	}
-                	int z = 0;
-                	for(; i < size; i++)
-                	{
-                		z++;
-                        	if(arr[i] == key)
-                        	{
-                        		last_index = i;
-                            		last_value = key;
-                            		printf("3 - The key of %d was found in %d steps.\n", key, z);
-                            		predict_steps += i;
-                            		predicted_searches++;
-                            		return;
-                        	}
-			}
-			for(int j = 0; j < size; j++)
-			{
-				if(arr[j] == key)
+				i = last_index+1;
+
+				if(i > size)
 				{
-					last_index = j;
-					last_value = key;
-					printf("4 - The key of %d was found in %d steps.\n", key, z+j);
-					predict_steps += (z+j);
-					return;
+					i -= 1;
 				}
+				int z = 0;
+				for(; i < size; i++)
+				{
+					z++;
+					if(arr[i] == key)
+					{
+						last_index = i;
+						last_value = key;
+						printf("3 - The key of %d was found in %d steps.\n", key, z);
+						predict_steps += i;
+						predicted_searches++;
+						return;
+					}
+				}
+				for(int j = 0; j < size; j++)
+				{
+					if(arr[j] == key)
+					{
+						last_index = j;
+						last_value = key;
+						printf("4 - The key of %d was found in %d steps.\n", key, z+j);
+						predict_steps += (z+j);
+						return;
+					}
+				}
+
+			}
+			else if(last_value == key)
+			{
+				i = last_index;
+				printf("The key of %d was found in 0 steps.\n", key);
+				predicted_searches++;
+				return;
 			}
 
-                }
-		else if(last_value == key)
-		{
-			i = last_index;
-			printf("The key of %d was found in 0 steps.\n", key);
+			printf("The key you were looking for doesn't exist.\n");
+			predict_steps += size;
 			predicted_searches++;
 			return;
-		}
-
-		printf("The key you were looking for doesn't exist.\n");
-		predict_steps += size;
-		predicted_searches++;
-		return;
-		}
-
-		printf("You must do a previous search before we can predict. We will do a non-predictive search this time.\n");
-		for(; i < size; i++)
-		{
-			if(arr[i] == key)
-			{
-				last_value = key;
-				last_index = i;
-				printf("5 - The key of %d was found in %d steps.\n", key, i);
-				regular_steps += i;
-				regular_searches++;
-				return;
-				}
 			}
-		printf("The key wasn't found\n");
-		regular_steps += i;
-		regular_searches++;
-		return;
+
+			printf("You must do a previous search before we can predict. We will do a non-predictive search this time.\n");
+			for(; i < size; i++)
+			{
+				if(arr[i] == key)
+				{
+					last_value = key;
+					last_index = i;
+					printf("5 - The key of %d was found in %d steps.\n", key, i);
+					regular_steps += i;
+					regular_searches++;
+					return;
+					}
+				}
+			printf("The key wasn't found\n");
+			regular_steps += i;
+			regular_searches++;
+			return;
 
 	case 0:
 		for(; i < size; i++)
