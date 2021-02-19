@@ -85,18 +85,6 @@ void find_item(int* arr, int size, int key)
                             				return;
 						}
 					}
-					for(int j = 0; j < size; j++)
-					{
-						if(arr[j] == key)
-						{
-							last_index = j;
-							last_value = key;
-							printf("2 - The key of %d was found in %d steps.\n", key, x+j);
-							predict_steps += (x+j);
-							predicted_searches++;
-							return;
-						}
-					}
                			}
 				else if(last_value < key)
 				{
@@ -120,18 +108,6 @@ void find_item(int* arr, int size, int key)
 							return;
 						}
 					}
-					for(int j = 0; j < size; j++)
-					{
-						if(arr[j] == key)
-						{
-							last_index = j;
-							last_value = key;
-							printf("4 - The key of %d was found in %d steps.\n", key, z+j);
-							predict_steps += (z+j);
-							return;
-						}
-					}
-
 				}
 				else if(last_value == key)
 				{
