@@ -165,7 +165,7 @@ void find_item(int* arr, int size, int key)
 		regular_searches++;
 		return;
 
-		case 0:
+	case 0:
 		for(; i < size; i++)
                 {
                     if(arr[i] == key)
